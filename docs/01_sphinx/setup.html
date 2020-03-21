@@ -1,0 +1,314 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sphinxプロジェクトの構築手順 &#8212; knowledge_base  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx">
+<h1>Sphinxプロジェクトの構築手順<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>やること</p>
+<ul class="simple">
+<li>SphinxでWebページを構築する</li>
+<li>Webページの編集にはマークダウン記法を使う</li>
+<li>GitHub Pagesで公開する</li>
+</ul>
+<div class="section" id="id1">
+<h2>プロジェクトを作る<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>sphinx-quickstartコマンド</p>
+<p>プロジェクト情報や拡張機能を設定する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir （プロジェクト名）
+$ cd （プロジェクト名）
+$ sphinx-quickstart
+Welcome to the Sphinx 1.7.9 quickstart utility.
+
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
+
+Selected root path: .
+
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory &quot;_build&quot; within the root path, or you separate
+&quot;source&quot; and &quot;build&quot; directories within the root path.
+&gt; Separate source and build directories (y/n) [n]: y
+
+Inside the root directory, two more directories will be created; &quot;_templates&quot;
+for custom HTML templates and &quot;_static&quot; for custom stylesheets and other static
+files. You can enter another prefix (such as &quot;.&quot;) to replace the underscore.
+&gt; Name prefix for templates and static dir [_]: 
+
+The project name will occur in several places in the built documentation.
+&gt; Project name: （プロジェクト名）
+&gt; Author name(s): （著者名）
+&gt; Project release []: 
+
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
+
+For a list of supported codes, see
+http://sphinx-doc.org/config.html#confval-language.
+&gt; Project language [en]: ja
+
+The file name suffix for source files. Commonly, this is either &quot;.txt&quot;
+or &quot;.rst&quot;.  Only files with this suffix are considered documents.
+&gt; Source file suffix [.rst]: 
+
+One document is special in that it is considered the top node of the
+&quot;contents tree&quot;, that is, it is the root of the hierarchical structure
+of the documents. Normally, this is &quot;index&quot;, but if your &quot;index&quot;
+document is a custom template, you can also set this to another filename.
+&gt; Name of your master document (without suffix) [index]: 
+
+Sphinx can also add configuration for epub output:
+&gt; Do you want to use the epub builder (y/n) [n]: 
+Indicate which of the following Sphinx extensions should be enabled:
+&gt; autodoc: automatically insert docstrings from modules (y/n) [n]: 
+&gt; doctest: automatically test code snippets in doctest blocks (y/n) [n]: 
+&gt; intersphinx: link between Sphinx documentation of different projects (y/n) [n]: 
+&gt; todo: write &quot;todo&quot; entries that can be shown or hidden on build (y/n) [n]: 
+&gt; coverage: checks for documentation coverage (y/n) [n]: 
+&gt; imgmath: include math, rendered as PNG or SVG images (y/n) [n]: 
+&gt; mathjax: include math, rendered in the browser by MathJax (y/n) [n]: 
+&gt; ifconfig: conditional inclusion of content based on config values (y/n) [n]: 
+&gt; viewcode: include links to the source code of documented Python objects (y/n) [n]: 
+&gt; githubpages: create .nojekyll file to publish the document on GitHub pages (y/n) [n]: y
+
+A Makefile and a Windows command file can be generated for you so that you
+only have to run e.g. `make html&#39; instead of invoking sphinx-build
+directly.
+&gt; Create Makefile? (y/n) [y]: 
+&gt; Create Windows command file? (y/n) [y]: n
+
+Creating file ./source/conf.py.
+Creating file ./source/index.rst.
+Creating file ./Makefile.
+
+Finished: An initial directory structure has been created.
+
+You should now populate your master file ./source/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.
+</pre></div>
+</div>
+<p>出力先の変更</p>
+<p>GitHub Pagesを使うため、Makefileを変更する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">変更前</span>
+<span class="n">BUILDDIR</span>      <span class="o">=</span> <span class="n">build</span>
+<span class="o">//</span> <span class="n">変更後</span>
+<span class="n">BUILDDIR</span>      <span class="o">=</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<p>.gitignoreファイルを追加する</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;.DS_Store&quot; &gt;&gt; .gitignore
+</pre></div>
+</div>
+<p>Sphinxプロジェクトをビルド</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make html
+</pre></div>
+</div>
+<p>バージョン</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip list
+
+・・・
+
+Sphinx                             1.7.9     
+sphinx-autobuild                   0.7.1     
+sphinx-markdown-tables             0.0.12    
+sphinx-rtd-theme                   0.4.3     
+sphinxcontrib-toc                  0.9.0     
+sphinxcontrib-websupport           1.1.0     
+sphinxjp.themes.basicstrap         0.5.0     
+
+・・・
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-pages">
+<h2>GitHub Pages で公開する<a class="headerlink" href="#github-pages" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>GitHubにリポジトリを作成し、Pushする。</p>
+<p>リポジトリの Settings &gt; GitHub Pages へ移動し、 Source を「None」から「master branch/docs folder」へ変更する。</p>
+<p><img alt="01_Sphinx/img/GitHubPages%E8%A8%AD%E5%AE%9A.png" src="01_Sphinx/img/GitHubPages%E8%A8%AD%E5%AE%9A.png" /></p>
+<p>確認</p>
+<p>https://（ユーザ名）.github.io/（プロジェクト名）/</p>
+<p><img alt="01_Sphinx/img/GitHubPages%E7%94%BB%E9%9D%A2.png" src="01_Sphinx/img/GitHubPages%E7%94%BB%E9%9D%A2.png" /></p>
+</div>
+<div class="section" id="id2">
+<h2>マークダウンを使えるようにする<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>pip インストールする。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --upgrade recommonmark
+</pre></div>
+</div>
+<p>source/conf.py を編集する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>・・・
+
+# -- General configuration ---------------------------------------------------
+
+・・・
+
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom
+# ones.
+extensions = [
+    &#39;recommonmark&#39;,           # 追加する
+    &#39;sphinx.ext.githubpages&#39;,
+    &#39;sphinx_markdown_tables&#39;, # 追加する
+]
+
+・・・
+
+# The suffix(es) of source filenames.
+# You can specify multiple suffix as a list of string:
+#
+source_suffix = [&#39;.rst&#39;, &#39;.md&#39;]　# コメントアウトを外す
+# source_suffix = &#39;.rst&#39;　　　　　# 削除orコメントアウトする
+
+・・・
+</pre></div>
+</div>
+<p>index.rstをindex.mdへリネームし、マークダウン記法に書き直す。</p>
+</div>
+<div class="section" id="sphinxhtml">
+<h2>SphinxのHTMLテーマをへ変更する<a class="headerlink" href="#sphinxhtml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「basicstrap」に変更する場合</p>
+<p>pip インストール（サードパーティ製を使う場合）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>source/conf.py を編集する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>・・・
+
+# -- Options for HTML output -------------------------------------------------
+
+# The theme to use for HTML and HTML Help pages.  See the documentation for
+# a list of builtin themes.
+#
+# html_theme = &#39;alabaster&#39; # コメントアウトする
+html_theme = &#39;basicstrap&#39;  # 好きなテーマを追加する
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+#
+# html_theme_options = {}
+
+# html_theme_optionsを必要に応じて追加する
+html_theme_options = {
+    # Enable inner theme by Bootswatch. Defaults to false
+    &#39;inner_theme&#39;: True,
+    # Set the name of innner theme. Defaults to &#39;bootswatch-simplex&#39;
+    &#39;inner_theme_name&#39;: &#39;bootswatch-flatly&#39;,
+}
+
+・・・
+</pre></div>
+</div>
+<p>＜参考＞
+conf.py sample — sphinx theme for basicstrap style  documentation
+https://pythonhosted.org/sphinxjp.themes.basicstrap/options.html#sample-and-html-theme-options</p>
+</div>
+<div class="section" id="id3">
+<h2>その他 Sphinxの設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>設定 ー Sphinx 4.0.0+/7307157b ドキュメント
+https://www.sphinx-doc.org/ja/master/usage/configuration.html</p>
+<p>変更した項目</p>
+<ul class="simple">
+<li>General configuration<ul>
+<li>html_show_sphinx</li>
+<li>html_use_index</li>
+</ul>
+</li>
+<li>Options for HTML output<ul>
+<li>html_sidebars</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">knowledge_base</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, junappl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="../_sources/01_Sphinx/setup.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
