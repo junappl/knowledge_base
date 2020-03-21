@@ -135,13 +135,13 @@ GitHubにリポジトリを作成し、Pushする。
 
 リポジトリの Settings > GitHub Pages へ移動し、 Source を「None」から「master branch/docs folder」へ変更する。
 
-![](img/GitHubPages設定.png)
+![](img/GitHubPages_settings.png)
 
 確認
 
 https://（ユーザ名）.github.io/（プロジェクト名）/
 
-![](img/GitHubPages画面.png)
+![](img/GitHubPages_sample.png)
 
 ## マークダウンを使えるようにする
 
@@ -183,7 +183,11 @@ source_suffix = ['.rst', '.md']　# コメントアウトを外す
 
 index.rstをindex.mdへリネームし、マークダウン記法に書き直す。
 
-## SphinxのHTMLテーマをへ変更する
+## Sphinxのテーマをへ変更する
+
+Sphinxのテーマ
+
+https://sphinx-themes.org/
 
 「basicstrap」に変更する場合
 
