@@ -99,13 +99,13 @@ BUILDDIR      = build
 BUILDDIR      = docs
 ```
 
-.gitignoreファイルを追加する
+.gitignoreファイルを追加する。
 
 ```
 $ echo ".DS_Store" >> .gitignore
 ```
 
-Sphinxプロジェクトをビルド
+Sphinxプロジェクトをビルドする。
 
 ```
 $ make html
@@ -187,15 +187,10 @@ index.rstをindex.mdへリネームし、マークダウン記法に書き直す
 
 Sphinxのテーマ
 
+Sphinx Themes
 https://sphinx-themes.org/
 
 「basicstrap」に変更する場合
-
-pip インストール（サードパーティ製を使う場合）
-
-```
-
-```
 
 source/conf.py を編集する。
 
