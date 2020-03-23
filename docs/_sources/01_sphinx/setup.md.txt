@@ -222,9 +222,6 @@ html_theme_options = {
 ・・・
 ```
 
-
-
-
 ＜参考＞
 conf.py sample &mdash; sphinx theme for basicstrap style  documentation
 https://pythonhosted.org/sphinxjp.themes.basicstrap/options.html#sample-and-html-theme-options
